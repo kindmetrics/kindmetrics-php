@@ -1,0 +1,25 @@
+{
+    "name": "kindmetrics/kindmetrics",
+    "type": "library",
+    "description": "Kindmetrics website analytics",
+    "keywords": ["website","analytics"],
+    "homepage": "https://github.com/kindmetrics/kindmetrics-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Håkan Nylén",
+            "email": "hakan@kindmetrics.io",
+            "homepage": "https://kindmetrics.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kindmetrics\\": "src/"
+        }
+    }
+}
