@@ -23,11 +23,11 @@ class Client
             'Authorization' => 'Bearer ' . $this->token
         ]
     ]);
-    if($response->getStatusCode() >= 300) {
+    if($response->getStatusCode() > 299) {
       return null;
     }
-
-    return json_decode($response->getBody());
+    $data = $response->getBody()->getContents();
+    return json_decode($data);
   }
 }
 ?>

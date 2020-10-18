@@ -26,21 +26,19 @@ class Kindmetrics
 
   public function getDomain($id)
   {
-    $clientData = $this->client->call("GET", "/domains/" . $id);
-    if($clientData == null) {
+    $response = $this->client->call("GET", "/domains/" . $id);
+    if($response == null) {
       return null;
     }
-    $response = $clientData;
-    return new Domain($this->token, $id, $response->address, $response->time_zone, $response->visitors, $response->pageviews, $response->bounce, $response->track_snippet);
+    return new Domain($this->token, $id, $response->address, $response->visitors, $response->pageviews, $response->bounce, $response->track_snippet);
   }
 
   public function getDomains()
   {
-    $clientData = $this->client->call("GET", "/domains");
-    if($clientData == null) {
+    $response = $this->client->call("GET", "/domains");
+    if($response == null) {
       return null;
     }
-    $response = $clientData;
     return $response;
   }
 }

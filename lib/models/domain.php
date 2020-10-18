@@ -10,6 +10,13 @@ class Domain
    */
   protected $token;
 
+  /**
+   * client
+   *
+   * @var string
+   */
+  protected $client;
+
 
   /**
    * The domain address
@@ -24,13 +31,6 @@ class Domain
    * @var integer
    */
   public $id;
-
-  /**
-   * The domain time zone
-   *
-   * @var string
-   */
-  public $timeZone;
 
   /**
    * The domain visitors
@@ -54,12 +54,13 @@ class Domain
   public $bounce;
 
 
-  public function __construct($token, $id, $address, $timeZone, $visitors, $pageviews, $bounce, $track_snippet)
+  public function __construct($token, $id, $address, $visitors, $pageviews, $bounce, $track_snippet)
   {
     $this->token = $token;
+    $this->client = new Client($token);
+
     $this->id = $id;
     $this->address = $address;
-    $this->timeZone = $timeZone;
     $this->visitors = $visitors;
     $this->pageviews = $pageviews;
     $this->bounce = $bounce;
@@ -68,32 +69,32 @@ class Domain
 
   public function getSources()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/sources");
+    $this->client->call("GET", "/domains/" . $this->id . "/sources");
   }
 
   public function getReferrers()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/referrers");
+    $this->client->call("GET", "/domains/" . $this->id . "/referrers");
   }
 
   public function getCountries()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/countries");
+    $this->client->call("GET", "/domains/" . $this->id . "/countries");
   }
 
   public function getEntryPages()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/entry_pages");
+    $this->client->call("GET", "/domains/" . $this->id . "/entry_pages");
   }
 
   public function getPages()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/pages");
+    $this->client->call("GET", "/domains/" . $this->id . "/pages");
   }
 
   public function getGoals()
   {
-    Client::call($this->token, "GET", "/domains/" . $id . "/goals");
+    $this->client->call("GET", "/domains/" . $this->id . "/goals");
   }
 
 }
