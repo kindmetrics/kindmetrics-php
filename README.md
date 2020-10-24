@@ -1,6 +1,9 @@
 # Kindmetrics PHP Library
 
-This is the php library for Kindmetrics.
+This is the PHP library for [Kindmetrics](https://kindmetrics.io).
+
+It is a privacy focused website analytics to help you find referrers and measure good content quickly. A more excellent way to dig into your visitors without the visitors giving their data to big enterprises.
+Kindmetrics have an API which this use, read more on https://kindmetrics.io
 
 You can get your domains, create new and get data on specific domains, like current visitors, sources, mediums, pages, and more.
 
