@@ -4,30 +4,28 @@ require "./vendor/autoload.php";
 
 class Client
 {
-  protected $client;
-  protected $token;
 
   const API_URL = "https://app.kindmetrics.io/api";
 
-  public function __construct($token)
+  static public function get($token, $path)
   {
-    $this->token = $token;
-    $this->client = new \GuzzleHttp\Client();
+    $response = \Httpful\Request::get(self::API_URL . $path)
+                       ->addHeader("Authorization", 'Bearer ' . $token)
+                       ->addHeader("Accept", 'application/json')
+                       ->expectsJson()
+                       ->send();
+     return json_decode($response);
   }
 
-  public function call($method, $path)
+  static public function post($token, $path, $parameters)
   {
-    $response = $this->client->request($method, self::API_URL . $path, [
-        'headers' => [
-            'User-Agent' => 'kindmetrics-php/1.0',
-            'Authorization' => 'Bearer ' . $this->token
-        ]
-    ]);
-    if($response->getStatusCode() > 299) {
-      return null;
-    }
-    $data = $response->getBody()->getContents();
-    return json_decode($data);
+    $response = \Httpful\Request::post(self::API_URL . $path)
+                       ->addHeader("Authorization", 'Bearer ' . $token)
+                       ->addHeader("User-Agent", 'kindmetrics-php')
+                       ->addHeader("Accept", 'application/json')
+                       ->expectsJson()
+                       ->send();
+    return json_decode($response);
   }
 }
 ?>

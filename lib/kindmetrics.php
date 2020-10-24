@@ -20,14 +20,13 @@ class Kindmetrics
   public function __construct($token)
   {
     $this->token = $token;
-    $this->client = new Client($token);
   }
 
 
   public function getDomain($id)
   {
-    $response = $this->client->call("GET", "/domains/" . $id);
-    if($response == null) {
+    $response = Client::get($this->token, "/domains/" . $id);
+    if(is_null($response)) {
       return null;
     }
     return new Domain($this->token, $id, $response->address, $response->visitors, $response->pageviews, $response->bounce, $response->track_snippet);
@@ -35,7 +34,7 @@ class Kindmetrics
 
   public function getDomains()
   {
-    $response = $this->client->call("GET", "/domains");
+    $response = Client::get($this->token, "/domains");
     if($response == null) {
       return null;
     }
