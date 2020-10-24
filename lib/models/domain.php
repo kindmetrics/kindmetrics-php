@@ -57,6 +57,11 @@ class Domain
     $this->track_snippet = $track_snippet;
   }
 
+  public function getCurrent()
+  {
+    return Client::get($this->token, "/domains/" . $this->id . "/current");
+  }
+
   public function getSources()
   {
     return Client::get($this->token, "/domains/" . $this->id . "/sources");
