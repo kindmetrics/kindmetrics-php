@@ -10,6 +10,7 @@ class Client
   static public function get($token, $path)
   {
     $response = \Httpful\Request::get(self::API_URL . $path)
+                       ->addHeader("User-Agent", 'kindmetrics-php')
                        ->addHeader("Authorization", 'Bearer ' . $token)
                        ->addHeader("Accept", 'application/json')
                        ->expectsJson()
