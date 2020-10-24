@@ -1,7 +1,5 @@
 <?php
 namespace Kindmetrics;
-require "./vendor/autoload.php";
-
 class Client
 {
 
